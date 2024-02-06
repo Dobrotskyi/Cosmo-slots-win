@@ -41,6 +41,7 @@ public class SoundManager : MonoBehaviour
         {
             _instance = this;
             DontDestroyOnLoad(gameObject);
+            SceneLoadTracker.SceneLoaded += SubscribeButtons;
         }
         else
         {
@@ -49,18 +50,31 @@ public class SoundManager : MonoBehaviour
         }
         OnAudioSettingsChanged();
         SettingsChanged += OnAudioSettingsChanged;
-        _buttons = FindObjectsOfType<Button>(true);
-        for (int i = 0; i < _buttons.Length; i++)
-            _buttons[i].onClick.AddListener(PlayButtonSound);
+        SubscribeButtons();
 
         float test;
         _mixer.GetFloat("VolumeMusic", out test);
-        Debug.Log(test);
     }
 
     private void OnDestroy()
     {
         SettingsChanged -= OnAudioSettingsChanged;
+        SceneLoadTracker.SceneLoaded -= SubscribeButtons;
+        UnsubscribeButtons();
+    }
+
+    private void SubscribeButtons()
+    {
+        UnsubscribeButtons();
+        _buttons = FindObjectsOfType<Button>(true);
+        for (int i = 0; i < _buttons.Length; i++)
+            _buttons[i].onClick.AddListener(PlayButtonSound);
+    }
+
+    private void UnsubscribeButtons()
+    {
+        if (_buttons == null)
+            return;
         for (int i = 0; i < _buttons.Length; i++)
             _buttons[i].onClick.RemoveListener(PlayButtonSound);
     }
