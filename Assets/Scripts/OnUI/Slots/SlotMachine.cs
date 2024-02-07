@@ -31,7 +31,6 @@ public class SlotMachine : MonoBehaviour
 
     public SlotCombination GetVerticalRow(int index)
     {
-        //return new(_rows.Select(r => r.GetActiveSlotByIndex(index)));
         var slots = _rows.Select(r => r.GetActiveSlotByIndex(index)).ToArray();
         return new(slots);
     }
