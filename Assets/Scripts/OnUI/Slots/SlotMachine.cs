@@ -9,6 +9,8 @@ public class SlotMachine : MonoBehaviour
     public static event Action HandlePulled;
     public static event Action FirstRowStoped;
     public static event Action RoundEnded;
+    public static event Action LastRowStoped;
+    public static event Action<int> PlayerWon;
 
     [SerializeField] private List<Row> _rows = new();
     [SerializeField] private List<WinningCombination> _combinations = new();
@@ -18,22 +20,27 @@ public class SlotMachine : MonoBehaviour
     [SerializeField] private AudioSource _roundEndedAS;
     [SerializeField] private List<AudioClip> _roundEndClips;
     [SerializeField] private ParticleSystem _winningEffect;
-    //private BettingField _bettingField;
+    private Bet _betting;
 
     public float SpinningTime { private set; get; } = 3f;
     public float TimeStep { private set; get; } = 2f;
-    public int Bet { private set; get; }
+    public int BetAmt { private set; get; }
     public int VisibleSlots => _visibleSlots;
     public IList<WinningCombination> Combinations => _combinations.AsReadOnly();
-    private bool IsRoundEnded => _rows.Count(r => r.IsStoped) == _rows.Count;
+    private bool AllRowsStoped => _rows.Count(r => r.IsStoped) == _rows.Count;
 
+    public SlotCombination GetVerticalRow(int index)
+    {
+        //return new(_rows.Select(r => r.GetActiveSlotByIndex(index)));
+        var slots = _rows.Select(r => r.GetActiveSlotByIndex(index)).ToArray();
+        return new(slots);
+    }
     public void LaunchMachine()
     {
         _winningEffect.Stop();
         _roundEndedAS.Stop();
         _spinningAS.Play();
-        //Bet = _bettingField.Value;
-        Bet = 100;
+        BetAmt = _betting.Amount;
         //PlayerInfoHolder.WithdrawCoins(Bet);
 
         HandlePulled?.Invoke();
@@ -44,9 +51,9 @@ public class SlotMachine : MonoBehaviour
 
     private void OnEnable()
     {
-        //PlayerInfoHolder.TryNotEnoughCoinsInvoke();
+        PlayerCoins.InvokeIfNotEnough();
 
-        //_bettingField = FindObjectOfType<BettingField>(true);
+        _betting = FindObjectOfType<Bet>(true);
 
         foreach (var row in _rows)
             row.Stoped += RowStoped;
@@ -66,8 +73,8 @@ public class SlotMachine : MonoBehaviour
 
     private void EnableButton()
     {
-        //if (PlayerInfoHolder.PlayerCoins <= PlayerInfoHolder.MIN_PLAYER_COINS)
-        //    return;
+        if (PlayerCoins.Amount < Bet.MIN_BET)
+            return;
         SetButtonInteractable(true);
     }
 
@@ -79,8 +86,9 @@ public class SlotMachine : MonoBehaviour
     {
         if (_rows.Count(r => r.IsStoped) == 1)
             FirstRowStoped?.Invoke();
-        if (!IsRoundEnded) return;
+        if (!AllRowsStoped) return;
 
+        LastRowStoped?.Invoke();
         _spinningAS.Stop();
 
         List<SlotCombination> currentCombinations = new();
@@ -103,7 +111,6 @@ public class SlotMachine : MonoBehaviour
         }
 
         float multipliers = 0;
-        int x2Count = 0;
         foreach (var combination in currentCombinations)
         {
             List<WinningCombination> matches = FindWinningCombinationIn(combination).ToList();
@@ -111,22 +118,23 @@ public class SlotMachine : MonoBehaviour
                 multipliers += matches.Sum(m => m.Multiplier);
         }
 
-        multipliers *= x2Count > 0 ? (int)Mathf.Pow(2, x2Count) : 1;
+        //temporary
 
-        if (multipliers != 0)
-        {
-            int winning = (int)(Bet * multipliers);
-            PlayWonSound();
-            _winningEffect.Play();
-            //PlayerInfoHolder.AddCoins(winning);
-        }
-        else
-        {
-            PlayLostSound();
-        }
+        //if (multipliers != 0)
+        //{
+        //    int winning = (int)(BetAmt * multipliers);
+        //    PlayWonSound();
+        //    _winningEffect.Play();
+        //    PlayerWon?.Invoke(winning);
+        //    //PlayerInfoHolder.AddCoins(winning);
+        //}
+        //else
+        //{
+        //    PlayLostSound();
+        //}
 
         RoundEnded?.Invoke();
-        //PlayerInfoHolder.TryNotEnoughCoinsInvoke();
+        PlayerCoins.InvokeIfNotEnough();
     }
 
     private void PlayLostSound()

@@ -1,7 +1,9 @@
+using System;
 using UnityEngine;
 
 public class Layout : MonoBehaviour
 {
+    public event Action Closed;
     private Animator _animator;
 
     public void Close()
@@ -22,5 +24,6 @@ public class Layout : MonoBehaviour
     private void TurnOff()
     {
         gameObject.SetActive(false);
+        Closed?.Invoke();
     }
 }

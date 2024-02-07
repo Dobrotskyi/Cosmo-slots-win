@@ -13,8 +13,9 @@ public class Row : MonoBehaviour
     [SerializeField] private AnimationCurve _spinningCurve;
     [SerializeField] private ParticleSystem _stopEffect;
     private AudioSource _as;
-    private float _startingSpeed = 20f;
+    private float _startingSpeed = 50f;
     private int _displayedSlots = 1;
+    private int _multiplySlotsBy = 3;
 
     public bool IsStoped { private set; get; }
     public SlotType CurrentSlotItem => CurrentSlot.Item;
@@ -28,6 +29,14 @@ public class Row : MonoBehaviour
             float y = RotationToSlot(_row.childCount - _displayedSlots / 2);
             return new(_row.anchoredPosition.x, y);
         }
+    }
+
+    public Slot GetActiveSlotByIndex(int index) => _row.GetActiveChildren().ElementAt(index).GetComponent<Slot>();
+
+    public void FadeFog()
+    {
+        for (int i = 0; i < _row.childCount; i++)
+            _row.GetChild(i).GetComponent<Slot>().FadeFog();
     }
 
     public SlotCombination GetVerticalCombination()
@@ -68,8 +77,6 @@ public class Row : MonoBehaviour
         RectTransform slot1 = _row.GetChild(0).GetComponent<RectTransform>();
         float slotHeight = slot1.rect.height;
         bool checkForRowEnd() => _row.anchoredPosition.y > BottomLine.y;
-
-        //_row.anchoredPosition = new Vector2(_row.anchoredPosition.x, RotationToSlot(UnityEngine.Random.Range(0, _row.childCount)));
 
         float getEasing()
         {
@@ -148,13 +155,12 @@ public class Row : MonoBehaviour
         yield return 0;
         SpawnSlotsInRow();
         yield return 0;
-        _row.anchoredPosition = new(_row.anchoredPosition.x, RotationToSlot(UnityEngine.Random.Range(_displayedSlots / 2, _row.childCount - 1)));
+        _row.anchoredPosition = new(_row.anchoredPosition.x, RotationToSlot(UnityEngine.Random.Range(_displayedSlots / 2, _row.childCount - (Mathf.CeilToInt((float)_displayedSlots / 2)))));
     }
 
     private void SpawnSlotsInRow()
     {
-        int rowsMerged = FindObjectOfType<SlotMachine>().VisibleSlots;
-        if (rowsMerged == 1)
+        if (_multiplySlotsBy == 1)
             return;
 
         List<List<Transform>> rowsToMerge = new();
@@ -163,7 +169,7 @@ public class Row : MonoBehaviour
         foreach (Transform child in _row.transform)
             currentSlots.Add(child);
 
-        for (int i = 0; i < rowsMerged - 1; i++)
+        for (int i = 0; i < _multiplySlotsBy; i++)
             rowsToMerge.Add(currentSlots.ToList());
 
         while (rowsToMerge.Count > 0)
@@ -179,4 +185,16 @@ public class Row : MonoBehaviour
                 rowsToMerge.Remove(randomRow);
         }
     }
+
+#if UNITY_EDITOR
+    public bool TestFog;
+    private void Update()
+    {
+        if (TestFog)
+        {
+            TestFog = false;
+            FadeFog();
+        }
+    }
+#endif
 }
