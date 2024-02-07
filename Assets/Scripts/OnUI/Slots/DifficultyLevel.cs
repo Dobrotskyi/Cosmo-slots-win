@@ -9,7 +9,7 @@ public class DifficultyLevel : MonoBehaviour
     [SerializeField] private Button _prev;
     [SerializeField] private TextMeshProUGUI _textField;
 
-    public Levels Level { private set; get; } = Levels.First;
+    public static Levels Level { private set; get; } = Levels.First;
     public string CreateString => PREF + ((int)Level + 1).ToString();
     public void Next()
     {
