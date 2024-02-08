@@ -39,7 +39,7 @@ public class Row : MonoBehaviour
             _row.GetChild(i).GetComponent<Slot>().FadeFog();
     }
 
-    public SlotCombination GetVerticalCombination()
+    public SlotSequence GetVerticalCombination()
     {
         List<Slot> slots = new();
         foreach (Transform child in _row)

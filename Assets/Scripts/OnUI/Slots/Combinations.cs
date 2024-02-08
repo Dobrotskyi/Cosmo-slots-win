@@ -4,13 +4,12 @@ using System.Linq;
 using UnityEngine;
 
 [Serializable]
-public class SlotCombination
+public class SlotSequence
 {
     [SerializeField] private List<Slot> _slots = new();
-    [SerializeField] private float _multiplier = 1;
     private List<SlotType> _slotsItems = new();
 
-    public IReadOnlyList<Slot> Slots => _slots;
+    public List<Slot> Slots => _slots;
     public IReadOnlyList<SlotType> SlotsItems
     {
         get
@@ -20,9 +19,8 @@ public class SlotCombination
             return _slotsItems;
         }
     }
-    public float Multiplier => _multiplier;
 
-    public SlotCombination(IEnumerable<Slot> slots)
+    public SlotSequence(IEnumerable<Slot> slots)
     {
         _slots = slots.ToList();
         _slotsItems = _slots.Select(s => s.Item).ToList();

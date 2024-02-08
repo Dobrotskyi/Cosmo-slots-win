@@ -7,6 +7,8 @@ public class Slot : MonoBehaviour
     [SerializeField] private RectTransform _mask;
     [SerializeField] private ParticleSystem _fadingEffect;
     [SerializeField] private bool _fogByDefault = true;
+
+    public bool Visited;
     public SlotType Item => _item;
     public bool FogFaded => !_fog.gameObject.activeSelf;
 
@@ -23,16 +25,17 @@ public class Slot : MonoBehaviour
 
     private void OnEnable()
     {
-        SlotMachine.HandlePulled += ApplyFog;
+        SlotMachine.HandlePulled += NewRound;
     }
 
     private void OnDisable()
     {
-        SlotMachine.HandlePulled -= ApplyFog;
+        SlotMachine.HandlePulled -= NewRound;
     }
 
-    private void ApplyFog()
+    private void NewRound()
     {
+        Visited = false;
         if (_fogByDefault)
             _fog.gameObject.SetActive(true);
     }

@@ -10,7 +10,7 @@ public class RowBonusUser : BonusUser
 
     protected override void Apply()
     {
-        foreach (var slot in _slots.GetVerticalRow(transform.GetSiblingIndex()).Slots)
+        foreach (var slot in _slots.GetHorizontalRow(transform.GetSiblingIndex()).Slots)
             slot.FadeFog();
     }
 }
