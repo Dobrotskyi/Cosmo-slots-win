@@ -22,6 +22,7 @@ public class SlotsGame : MonoBehaviour
     [SerializeField] private ParticleSystem _winningEffect;
     [SerializeField] private ParticleSystem _fogFadingEffect;
     private Bet _betting;
+    private bool _revealed;
 
     public float SpinningTime { private set; get; } = 3f;
     public float TimeStep { private set; get; } = 2f;
@@ -37,11 +38,14 @@ public class SlotsGame : MonoBehaviour
 
     public void Unlock()
     {
+        if (_revealed)
+            return;
         StartCoroutine(GetResults());
     }
 
     private IEnumerator GetResults()
     {
+        _revealed = true;
         HashSet<Slot> results = new();
 
         switch (DifficultyLevel.Level)
@@ -79,14 +83,14 @@ public class SlotsGame : MonoBehaviour
         if (multipliers != 0)
         {
             int winning = (int)(BetAmt * multipliers);
-            PLosingSound();
+            WinningSound();
             _winningEffect.Play();
             PlayerWon?.Invoke(winning);
             PlayerCoins.AddCoins(winning);
         }
         else
         {
-            WinningSound();
+            LosingSound();
         }
 
         RoundEnded?.Invoke();
@@ -117,12 +121,7 @@ public class SlotsGame : MonoBehaviour
                 else
                     break;
             }
-
-            Debug.Log($"Found {foundSlots.Count(s => s.Item == slot.Item)} of type {slot.Item}");
         }
-
-        Debug.Log($"Summed of {new HashSet<Slot>(foundSlots).Count} elements");
-
         return new HashSet<Slot>(foundSlots);
     }
     private HashSet<Slot> GetCombinationsSecondLevel() => GetCombination(false, true);
@@ -201,10 +200,11 @@ public class SlotsGame : MonoBehaviour
         return result;
     }
 
-    public void LaunchMachine()
+    public void Begin()
     {
         StopAllCoroutines();
 
+        _revealed = false;
         _winningEffect.Stop();
         _roundEndedAS.Stop();
         _spinningAS.Play();
@@ -259,13 +259,13 @@ public class SlotsGame : MonoBehaviour
         _spinningAS.Stop();
     }
 
-    private void WinningSound()
+    private void LosingSound()
     {
         _roundEndedAS.clip = _roundEndClips[1];
         _roundEndedAS.Play();
     }
 
-    private void PLosingSound()
+    private void WinningSound()
     {
         _roundEndedAS.clip = _roundEndClips[0];
         _roundEndedAS.Play();

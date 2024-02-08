@@ -1514,7 +1514,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: FadeFogRowButton (5)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8582232399625061536, guid: 3dc3e11e5a7b020488dc0ede9cb2f7fc, type: 3}
+    - {fileID: 7401501143264356745, guid: 3dc3e11e5a7b020488dc0ede9cb2f7fc, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 3dc3e11e5a7b020488dc0ede9cb2f7fc, type: 3}
 --- !u!224 &77991297 stripped
 RectTransform:
@@ -5962,7 +5964,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3138845355258905089, guid: 2287b8f32e2dada4b8673b031116b15b, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -0.9998398
+      value: -0.99983215
       objectReference: {fileID: 0}
     - target: {fileID: 3138845355258905089, guid: 2287b8f32e2dada4b8673b031116b15b, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -7114,7 +7116,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: FadeFogRowButton
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8582232399625061536, guid: 3dc3e11e5a7b020488dc0ede9cb2f7fc, type: 3}
+    - {fileID: 7401501143264356745, guid: 3dc3e11e5a7b020488dc0ede9cb2f7fc, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 3dc3e11e5a7b020488dc0ede9cb2f7fc, type: 3}
 --- !u!224 &651552851 stripped
 RectTransform:
@@ -7731,7 +7735,9 @@ PrefabInstance:
       propertyPath: _represented
       value: 
       objectReference: {fileID: 999265694}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8425067233243173512, guid: de81f9d7bc67b78439836f608c096273, type: 3}
+    - {fileID: 8025714660652698427, guid: de81f9d7bc67b78439836f608c096273, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: de81f9d7bc67b78439836f608c096273, type: 3}
 --- !u!224 &677771513 stripped
 RectTransform:
@@ -8005,7 +8011,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3138845355258905089, guid: 2287b8f32e2dada4b8673b031116b15b, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -0.5000076
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3138845355258905089, guid: 2287b8f32e2dada4b8673b031116b15b, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -8566,11 +8572,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3138845355258905094, guid: 2287b8f32e2dada4b8673b031116b15b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LaunchMachine
+      value: Begin
       objectReference: {fileID: 0}
     - target: {fileID: 3138845355258905094, guid: 2287b8f32e2dada4b8673b031116b15b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: SlotMachine, Assembly-CSharp
+      value: SlotsGame, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 3138845355258905094, guid: 2287b8f32e2dada4b8673b031116b15b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -9181,7 +9187,9 @@ PrefabInstance:
       propertyPath: _represented
       value: 
       objectReference: {fileID: 183977326}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8425067233243173512, guid: de81f9d7bc67b78439836f608c096273, type: 3}
+    - {fileID: 8025714660652698427, guid: de81f9d7bc67b78439836f608c096273, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: de81f9d7bc67b78439836f608c096273, type: 3}
 --- !u!224 &892847240 stripped
 RectTransform:
@@ -11984,8 +11992,8 @@ MonoBehaviour:
   _spinningAS: {fileID: 1018140570}
   _roundEndedAS: {fileID: 1018140571}
   _roundEndClips:
-  - {fileID: 8300000, guid: 59997acf068d49346949e163fb6d9636, type: 3}
-  - {fileID: 8300000, guid: c25b280b09e99d34d923b8a36dfaca3f, type: 3}
+  - {fileID: 8300000, guid: 03a09a22f91c45740b60a9c41c1a7b1d, type: 3}
+  - {fileID: 8300000, guid: ae741445d23be2741b66c9d1b6cec762, type: 3}
   _winningEffect: {fileID: 313092800}
   _fogFadingEffect: {fileID: 1243866875}
 --- !u!82 &1018140570
@@ -11998,9 +12006,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -5757322448623606748, guid: 038e53e813e32b94da9399c8eba739e7, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 61338cc2626af604f9ce72ba4357c650, type: 3}
+  m_audioClip: {fileID: 8300000, guid: dd614219e9fcb634398a7bedd6b1afd2, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -12094,7 +12102,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -5757322448623606748, guid: 038e53e813e32b94da9399c8eba739e7, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 59997acf068d49346949e163fb6d9636, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 03a09a22f91c45740b60a9c41c1a7b1d, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -14240,7 +14248,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 446396511014353745, guid: ca5549c37559282439ad720c94f7e640, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 73.94591
+      value: 73.94592
       objectReference: {fileID: 0}
     - target: {fileID: 446396511014353745, guid: ca5549c37559282439ad720c94f7e640, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -14756,7 +14764,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3138845355258905089, guid: 2287b8f32e2dada4b8673b031116b15b, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -0.5000076
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3138845355258905089, guid: 2287b8f32e2dada4b8673b031116b15b, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -16078,7 +16086,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: FadeFogRowButton (3)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8582232399625061536, guid: 3dc3e11e5a7b020488dc0ede9cb2f7fc, type: 3}
+    - {fileID: 7401501143264356745, guid: 3dc3e11e5a7b020488dc0ede9cb2f7fc, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 3dc3e11e5a7b020488dc0ede9cb2f7fc, type: 3}
 --- !u!224 &1298692827 stripped
 RectTransform:
@@ -16527,7 +16537,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3138845355258905089, guid: 2287b8f32e2dada4b8673b031116b15b, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -0.5000076
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3138845355258905089, guid: 2287b8f32e2dada4b8673b031116b15b, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -16870,7 +16880,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: FadeFogRowButton (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8582232399625061536, guid: 3dc3e11e5a7b020488dc0ede9cb2f7fc, type: 3}
+    - {fileID: 7401501143264356745, guid: 3dc3e11e5a7b020488dc0ede9cb2f7fc, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 3dc3e11e5a7b020488dc0ede9cb2f7fc, type: 3}
 --- !u!224 &1396802944 stripped
 RectTransform:
@@ -18318,7 +18330,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3138845355258905089, guid: 2287b8f32e2dada4b8673b031116b15b, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -0.9998398
+      value: -0.99983215
       objectReference: {fileID: 0}
     - target: {fileID: 3138845355258905089, guid: 2287b8f32e2dada4b8673b031116b15b, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -19075,10 +19087,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3138845355258905094, guid: 2287b8f32e2dada4b8673b031116b15b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3138845355258905094, guid: 2287b8f32e2dada4b8673b031116b15b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3138845355258905094, guid: 2287b8f32e2dada4b8673b031116b15b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3138845355258905094, guid: 2287b8f32e2dada4b8673b031116b15b, type: 3}
@@ -19086,7 +19102,15 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1018140569}
     - target: {fileID: 3138845355258905094, guid: 2287b8f32e2dada4b8673b031116b15b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1961082840}
+    - target: {fileID: 3138845355258905094, guid: 2287b8f32e2dada4b8673b031116b15b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3138845355258905094, guid: 2287b8f32e2dada4b8673b031116b15b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3138845355258905094, guid: 2287b8f32e2dada4b8673b031116b15b, type: 3}
@@ -19094,11 +19118,23 @@ PrefabInstance:
       value: Unlock
       objectReference: {fileID: 0}
     - target: {fileID: 3138845355258905094, guid: 2287b8f32e2dada4b8673b031116b15b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: Play
+      objectReference: {fileID: 0}
+    - target: {fileID: 3138845355258905094, guid: 2287b8f32e2dada4b8673b031116b15b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: SlotMachine, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 3138845355258905094, guid: 2287b8f32e2dada4b8673b031116b15b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: UnityEngine.AudioSource, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3138845355258905094, guid: 2287b8f32e2dada4b8673b031116b15b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3138845355258905094, guid: 2287b8f32e2dada4b8673b031116b15b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -19113,7 +19149,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3138845355258905094, guid: 2287b8f32e2dada4b8673b031116b15b, type: 3}
   m_PrefabInstance: {fileID: 1624578001}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1961082839}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
@@ -19484,7 +19520,9 @@ PrefabInstance:
       propertyPath: _represented
       value: 
       objectReference: {fileID: 909059441}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8425067233243173512, guid: de81f9d7bc67b78439836f608c096273, type: 3}
+    - {fileID: 8025714660652698427, guid: de81f9d7bc67b78439836f608c096273, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: de81f9d7bc67b78439836f608c096273, type: 3}
 --- !u!224 &1671178074 stripped
 RectTransform:
@@ -19937,7 +19975,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: FadeFogRowButton (2)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8582232399625061536, guid: 3dc3e11e5a7b020488dc0ede9cb2f7fc, type: 3}
+    - {fileID: 7401501143264356745, guid: 3dc3e11e5a7b020488dc0ede9cb2f7fc, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 3dc3e11e5a7b020488dc0ede9cb2f7fc, type: 3}
 --- !u!224 &1740594694 stripped
 RectTransform:
@@ -20077,7 +20117,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: FadeFogRowButton (4)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8582232399625061536, guid: 3dc3e11e5a7b020488dc0ede9cb2f7fc, type: 3}
+    - {fileID: 7401501143264356745, guid: 3dc3e11e5a7b020488dc0ede9cb2f7fc, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 3dc3e11e5a7b020488dc0ede9cb2f7fc, type: 3}
 --- !u!224 &1762889300 stripped
 RectTransform:
@@ -20222,7 +20264,9 @@ PrefabInstance:
       propertyPath: _represented
       value: 
       objectReference: {fileID: 972347765}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8425067233243173512, guid: de81f9d7bc67b78439836f608c096273, type: 3}
+    - {fileID: 8025714660652698427, guid: de81f9d7bc67b78439836f608c096273, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: de81f9d7bc67b78439836f608c096273, type: 3}
 --- !u!224 &1786959140 stripped
 RectTransform:
@@ -20930,6 +20974,107 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7401501143264356750, guid: 3dc3e11e5a7b020488dc0ede9cb2f7fc, type: 3}
   m_PrefabInstance: {fileID: 1949818592}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1961082839 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3138845355258905088, guid: 2287b8f32e2dada4b8673b031116b15b, type: 3}
+  m_PrefabInstance: {fileID: 1624578001}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &1961082840
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1961082839}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: -5757322448623606748, guid: 038e53e813e32b94da9399c8eba739e7, type: 2}
+  m_audioClip: {fileID: 8300000, guid: 80d8122bb8a2f0243b8a3b64b6ab75a4, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1961361633
 GameObject:
   m_ObjectHideFlags: 0
@@ -22447,7 +22592,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3138845355258905089, guid: 2287b8f32e2dada4b8673b031116b15b, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -0.9998398
+      value: -0.99983215
       objectReference: {fileID: 0}
     - target: {fileID: 3138845355258905089, guid: 2287b8f32e2dada4b8673b031116b15b, type: 3}
       propertyPath: m_AnchoredPosition.y

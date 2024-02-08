@@ -27,9 +27,9 @@ public class SoundManager : MonoBehaviour
     private const int MUSIC_OFF = -80;
     private const int MUSIC_ON = 0;
 
-    //Music track: Wine by Lukrembo
+    // Music track: Sunflower by Lukrembo
     //Source: https://freetouse.com/music
-    //Free Background Music for Videos
+    //Free To Use Music for Video
     [SerializeField] private AudioSource _musicAS;
     [SerializeField] private AudioSource _soundAS;
     [SerializeField] private AudioMixer _mixer;

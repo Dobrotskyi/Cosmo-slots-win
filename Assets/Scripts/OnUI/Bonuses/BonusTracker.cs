@@ -8,9 +8,9 @@ public static class BonusTracker
 
     public static readonly Dictionary<Bonus, int> PriceList = new()
     {
-        {Bonus.Cell, 0 },
-        {Bonus.Column, 0 },
-        {Bonus.Row, 0 }
+        {Bonus.Cell, 300 },
+        {Bonus.Column, 400 },
+        {Bonus.Row, 550 }
     };
 
     public static int GetAmount(Bonus bonus) => PlayerPrefs.GetInt(bonus.ToString(), 0);
