@@ -79,7 +79,7 @@ public class SlotsGame : MonoBehaviour
         if (results.Count != 0)
             multipliers = results.Sum(s => s.Multiplier);
 
-        yield return new WaitForSeconds(_fogFadingEffect.main.duration * 3);
+        yield return new WaitForSeconds(_fogFadingEffect.main.duration * 2);
         if (multipliers != 0)
         {
             int winning = (int)(BetAmt * multipliers);
