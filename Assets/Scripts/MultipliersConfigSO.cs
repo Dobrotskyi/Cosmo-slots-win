@@ -10,7 +10,7 @@ public class MultipliersConfigSO : ScriptableObject
     public struct SlotToLevelMult
     {
         [SerializeField] private SlotType _type;
-        [SerializeField] private List<KeyValuePair<Levels, float>> _multipliersByLevel;
+        public List<Pair<Levels, float>> _multipliersByLevel;
 
         public SlotType Type => _type;
 
@@ -20,4 +20,18 @@ public class MultipliersConfigSO : ScriptableObject
     [SerializeField] private List<SlotToLevelMult> Gradation;
 
     public float GetMultiplierOf(SlotType type, Levels level) => Gradation.First(g => g.Type == type).GetMultiplierByLevel(level);
+}
+
+[System.Serializable]
+public class Pair<K, V>
+{
+
+    public Pair(K key, V value)
+    {
+        Key = key;
+        Value = value;
+    }
+
+    public K Key;
+    public V Value;
 }

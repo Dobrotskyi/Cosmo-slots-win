@@ -24,16 +24,18 @@ public abstract class BonusUser : MonoBehaviour
 
     private void OnEnable()
     {
-        SlotMachine.HandlePulled += HandlePulled;
-        SlotMachine.LastRowStoped += EnableButton;
+        SlotsGame.RoundStarted += HandlePulled;
+        SlotsGame.LastRowStoped += EnableButton;
         BonusTracker.BonusAmtChanged += UpdateUseButton;
+        SlotsGame.Revealed += HandlePulled;
         _button.interactable = false;
     }
 
     private void OnDisable()
     {
-        SlotMachine.HandlePulled -= HandlePulled;
-        SlotMachine.LastRowStoped -= EnableButton;
+        SlotsGame.RoundStarted -= HandlePulled;
+        SlotsGame.Revealed -= HandlePulled;
+        SlotsGame.LastRowStoped -= EnableButton;
         BonusTracker.BonusAmtChanged -= UpdateUseButton;
     }
 

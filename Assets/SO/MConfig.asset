@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 958a8feceb08c9a4896a2423733a4576, type: 3}
+  m_Name: MConfig
+  m_EditorClassIdentifier: 
+  Gradation:
+  - _type: 0
+    _multipliersByLevel:
+    - Key: 0
+      Value: 0.1
+    - Key: 1
+      Value: 0.3
+    - Key: 2
+      Value: 1
+  - _type: 1
+    _multipliersByLevel:
+    - Key: 0
+      Value: 0.15
+    - Key: 1
+      Value: 0.35
+    - Key: 2
+      Value: 1.1
+  - _type: 2
+    _multipliersByLevel:
+    - Key: 0
+      Value: 0.18
+    - Key: 1
+      Value: 0.38
+    - Key: 2
+      Value: 1.3
+  - _type: 3
+    _multipliersByLevel:
+    - Key: 0
+      Value: 0.21
+    - Key: 1
+      Value: 0.41
+    - Key: 2
+      Value: 1.5
+  - _type: 4
+    _multipliersByLevel:
+    - Key: 0
+      Value: 0.25
+    - Key: 1
+      Value: 0.55
+    - Key: 2
+      Value: 1.6
+  - _type: 5
+    _multipliersByLevel:
+    - Key: 0
+      Value: 0.3
+    - Key: 1
+      Value: 0.6
+    - Key: 2
+      Value: 1.8
+  - _type: 6
+    _multipliersByLevel:
+    - Key: 0
+      Value: 0.35
+    - Key: 1
+      Value: 0.65
+    - Key: 2
+      Value: 2

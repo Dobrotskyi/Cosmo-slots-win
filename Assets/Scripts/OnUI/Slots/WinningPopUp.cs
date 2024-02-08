@@ -14,11 +14,11 @@ public class WinningPopUp : MonoBehaviour
 
     private void Awake()
     {
-        SlotMachine.PlayerWon += Show;
+        SlotsGame.PlayerWon += Show;
     }
 
     private void OnDestroy()
     {
-        SlotMachine.PlayerWon -= Show;
+        SlotsGame.PlayerWon -= Show;
     }
 }

@@ -1,7 +1,7 @@
 using UnityEngine;
 public class ColumnBonusUser : BonusUser
 {
-    [SerializeField] private Row _represented;
+    [SerializeField] private SlotsRow _represented;
     public override Bonus Type => Bonus.Column;
 
     protected override void Apply()

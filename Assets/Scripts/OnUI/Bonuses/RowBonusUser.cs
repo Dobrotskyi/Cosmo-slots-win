@@ -1,11 +1,11 @@
 public class RowBonusUser : BonusUser
 {
-    private SlotMachine _slots;
+    private SlotsGame _slots;
     public override Bonus Type => Bonus.Row;
 
     private void Awake()
     {
-        _slots = FindObjectOfType<SlotMachine>();
+        _slots = FindObjectOfType<SlotsGame>();
     }
 
     protected override void Apply()

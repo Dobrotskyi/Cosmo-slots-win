@@ -266,6 +266,8 @@ MonoBehaviour:
   _mask: {fileID: 0}
   _fadingEffect: {fileID: 3451417742205040077, guid: 80e5d39e18c427e489521d71ad4685b0, type: 3}
   _fogByDefault: 1
+  _multipliersField: {fileID: 7006690237199349106}
+  _multipliersConfig: {fileID: 11400000, guid: 95a0c810c4976bb4e90840d2ee6c7dec, type: 2}
   Visited: 0
 --- !u!114 &1826264001415033971
 MonoBehaviour:
@@ -322,8 +324,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -0.4429016}
+  m_SizeDelta: {x: 0, y: 27.4606}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1862056315853134934
 CanvasRenderer:
@@ -362,8 +364,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4290125019
-  m_fontColor: {r: 0.8584906, g: 0.10933607, b: 0.7144222, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

@@ -8,14 +8,14 @@ public class SlotControllButton : MonoBehaviour
 
     private void Awake()
     {
-        SlotMachine.LastRowStoped += ShowSelectorButton;
-        SlotMachine.RoundEnded += ShowSpinButton;
+        SlotsGame.LastRowStoped += ShowSelectorButton;
+        SlotsGame.RoundEnded += ShowSpinButton;
     }
 
     private void OnDestroy()
     {
-        SlotMachine.LastRowStoped -= ShowSelectorButton;
-        SlotMachine.RoundEnded -= ShowSpinButton;
+        SlotsGame.LastRowStoped -= ShowSelectorButton;
+        SlotsGame.RoundEnded -= ShowSpinButton;
     }
 
     private void ShowSelectorButton()

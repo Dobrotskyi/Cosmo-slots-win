@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class Slot : MonoBehaviour
@@ -7,8 +8,13 @@ public class Slot : MonoBehaviour
     [SerializeField] private RectTransform _mask;
     [SerializeField] private ParticleSystem _fadingEffect;
     [SerializeField] private bool _fogByDefault = true;
+    [SerializeField] private TextMeshProUGUI _multipliersField;
+    [SerializeField] private MultipliersConfigSO _multipliersConfig;
 
+    [HideInInspector]
     public bool Visited;
+
+    public float Multiplier => _multipliersConfig.GetMultiplierOf(Item, DifficultyLevel.Level);
     public SlotType Item => _item;
     public bool FogFaded => !_fog.gameObject.activeSelf;
 
@@ -23,18 +29,26 @@ public class Slot : MonoBehaviour
                 Instantiate(_fadingEffect, _fog.position, Quaternion.identity);
     }
 
+    public void InCombination()
+    {
+        _multipliersField.gameObject.SetActive(true);
+        _multipliersField.text = "x" + Multiplier;
+    }
+
     private void OnEnable()
     {
-        SlotMachine.HandlePulled += NewRound;
+        SlotsGame.RoundStarted += NewRound;
+        NewRound();
     }
 
     private void OnDisable()
     {
-        SlotMachine.HandlePulled -= NewRound;
+        SlotsGame.RoundStarted -= NewRound;
     }
 
     private void NewRound()
     {
+        _multipliersField.gameObject.SetActive(false);
         Visited = false;
         if (_fogByDefault)
             _fog.gameObject.SetActive(true);

@@ -5,15 +5,15 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SlotMachine : MonoBehaviour
+public class SlotsGame : MonoBehaviour
 {
-    public static event Action HandlePulled;
-    public static event Action FirstRowStoped;
+    public static event Action RoundStarted;
     public static event Action RoundEnded;
     public static event Action LastRowStoped;
+    public static event Action Revealed;
     public static event Action<int> PlayerWon;
 
-    [SerializeField] private List<Row> _rows = new();
+    [SerializeField] private List<SlotsRow> _rows = new();
     [SerializeField] private Button _handle;
     [SerializeField] private int _visibleSlots = 1;
     [SerializeField] private AudioSource _spinningAS;
@@ -42,44 +42,58 @@ public class SlotMachine : MonoBehaviour
 
     private IEnumerator GetResults()
     {
-        List<SlotSequence> rowsCombs = new();
-        for (int i = 0; i < VisibleSlots; i++)
-        {
-            rowsCombs.Add(GetHorizontalRow(i));
-            foreach (var item in rowsCombs[i].Slots)
-                item.FadeFog(false);
-        }
-        _fogFadingEffect.Play();
+        HashSet<Slot> results = new();
 
-        Levels level = DifficultyLevel.Level;
-
-        yield return new WaitForSeconds(_fogFadingEffect.main.duration * 3);
-
-        switch (level)
+        switch (DifficultyLevel.Level)
         {
             case Levels.First:
                 {
-                    GetCombinationsFirstLevel();
+                    results = GetCombinationsFirstLevel();
                     break;
                 }
             case Levels.Second:
                 {
-                    GetCombinationsSecondLevel();
+                    results = GetCombinationsSecondLevel();
                     break;
                 }
             case Levels.Third:
                 {
-                    GetCombinationsThirdLevel();
+                    results = GetCombinationsThirdLevel();
                     break;
                 }
         }
 
-        Debug.Log(DifficultyLevel.Level);
+        for (int i = 0; i < VisibleSlots; i++)
+            foreach (var item in GetHorizontalRow(i).Slots)
+                item.FadeFog(false);
+
+        _fogFadingEffect.Play();
+        foreach (var item in results)
+            item.InCombination();
+        Revealed?.Invoke();
+        float multipliers = 0;
+        if (results.Count != 0)
+            multipliers = results.Sum(s => s.Multiplier);
+
+        yield return new WaitForSeconds(_fogFadingEffect.main.duration * 3);
+        if (multipliers != 0)
+        {
+            int winning = (int)(BetAmt * multipliers);
+            PLosingSound();
+            _winningEffect.Play();
+            PlayerWon?.Invoke(winning);
+            PlayerCoins.AddCoins(winning);
+        }
+        else
+        {
+            WinningSound();
+        }
+
         RoundEnded?.Invoke();
         PlayerCoins.InvokeIfNotEnough();
     }
 
-    private void GetCombinationsFirstLevel()
+    private HashSet<Slot> GetCombinationsFirstLevel()
     {
         List<SlotSequence> verticalCombinations = _rows.Select(r => r.GetVerticalCombination()).ToList();
         SlotSequence start = verticalCombinations[0];
@@ -108,11 +122,13 @@ public class SlotMachine : MonoBehaviour
         }
 
         Debug.Log($"Summed of {new HashSet<Slot>(foundSlots).Count} elements");
-    }
-    private void GetCombinationsSecondLevel() => GetCombination(false, true);
-    private void GetCombinationsThirdLevel() => GetCombination(false, false);
 
-    private void GetCombination(bool includeVert, bool includeDiag)
+        return new HashSet<Slot>(foundSlots);
+    }
+    private HashSet<Slot> GetCombinationsSecondLevel() => GetCombination(false, true);
+    private HashSet<Slot> GetCombinationsThirdLevel() => GetCombination(false, false);
+
+    private HashSet<Slot> GetCombination(bool includeVert, bool includeDiag)
     {
         List<Slot> foundSlots = new();
         LinkedList<SlotSequence> verticalCombs = new(_rows.Select(r => r.GetVerticalCombination()));
@@ -140,6 +156,8 @@ public class SlotMachine : MonoBehaviour
         foreach (var element in result)
             Debug.Log(element.Item);
 #endif
+
+        return result;
     }
 
     private List<Slot> GetNeighbours(LinkedListNode<SlotSequence> node, int index, bool includeVert = true, bool includeDiag = true)
@@ -191,9 +209,10 @@ public class SlotMachine : MonoBehaviour
         _roundEndedAS.Stop();
         _spinningAS.Play();
         BetAmt = _betting.Amount;
-        //PlayerInfoHolder.WithdrawCoins(Bet);
 
-        HandlePulled?.Invoke();
+        PlayerCoins.WithdrawCoins(BetAmt);
+
+        RoundStarted?.Invoke();
 
         for (int i = 0; i < _rows.Count; i++)
             _rows[i].StartSpinning(SpinningTime + TimeStep * i);
@@ -234,66 +253,19 @@ public class SlotMachine : MonoBehaviour
 
     private void RowStoped()
     {
-        if (_rows.Count(r => r.IsStoped) == 1)
-            FirstRowStoped?.Invoke();
         if (!AllRowsStoped) return;
 
         LastRowStoped?.Invoke();
         _spinningAS.Stop();
-
-        //List<SlotCombination> currentCombinations = new();
-        //if (VisibleSlots == 1)
-        //    currentCombinations.Add(new(_rows.Select(r => r.CurrentSlot)));
-
-        //else
-        //{
-        //    for (int i = 0; i < _rows.Count; i++)
-        //        currentCombinations.Add(_rows[i].GetVerticalCombination());
-
-        //    for (int i = 0; i < _rows.Count; i++)
-        //    {
-        //        Slot[] itemsInHorizontal = new Slot[_rows.Count];
-        //        for (int j = 0; j < itemsInHorizontal.Length; j++)
-        //            itemsInHorizontal[j] = currentCombinations[j].Slots[i];
-
-        //        currentCombinations.Add(new(itemsInHorizontal));
-        //    }
-        //}
-
-        //float multipliers = 0;
-        //foreach (var combination in currentCombinations)
-        //{
-        //    List<WinningCombination> matches = FindWinningCombinationIn(combination).ToList();
-        //    if (matches.Count > 0)
-        //        multipliers += matches.Sum(m => m.Multiplier);
-        //}
-
-        //temporary
-
-        //if (multipliers != 0)
-        //{
-        //    int winning = (int)(BetAmt * multipliers);
-        //    PlayWonSound();
-        //    _winningEffect.Play();
-        //    PlayerWon?.Invoke(winning);
-        //    //PlayerInfoHolder.AddCoins(winning);
-        //}
-        //else
-        //{
-        //    PlayLostSound();
-        //}
-
-        //RoundEnded?.Invoke();
-        //PlayerCoins.InvokeIfNotEnough();
     }
 
-    private void PlayLostSound()
+    private void WinningSound()
     {
         _roundEndedAS.clip = _roundEndClips[1];
         _roundEndedAS.Play();
     }
 
-    private void PlayWonSound()
+    private void PLosingSound()
     {
         _roundEndedAS.clip = _roundEndClips[0];
         _roundEndedAS.Play();
