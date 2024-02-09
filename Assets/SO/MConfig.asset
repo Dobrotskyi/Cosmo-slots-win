@@ -24,7 +24,7 @@ MonoBehaviour:
   - _type: 1
     _multipliersByLevel:
     - Key: 0
-      Value: 0.15
+      Value: 0.12
     - Key: 1
       Value: 0.35
     - Key: 2
@@ -32,7 +32,7 @@ MonoBehaviour:
   - _type: 2
     _multipliersByLevel:
     - Key: 0
-      Value: 0.18
+      Value: 0.13
     - Key: 1
       Value: 0.38
     - Key: 2
@@ -40,7 +40,7 @@ MonoBehaviour:
   - _type: 3
     _multipliersByLevel:
     - Key: 0
-      Value: 0.21
+      Value: 0.14
     - Key: 1
       Value: 0.41
     - Key: 2
@@ -48,7 +48,7 @@ MonoBehaviour:
   - _type: 4
     _multipliersByLevel:
     - Key: 0
-      Value: 0.25
+      Value: 0.15
     - Key: 1
       Value: 0.55
     - Key: 2
@@ -56,7 +56,7 @@ MonoBehaviour:
   - _type: 5
     _multipliersByLevel:
     - Key: 0
-      Value: 0.3
+      Value: 0.16
     - Key: 1
       Value: 0.6
     - Key: 2
@@ -64,7 +64,7 @@ MonoBehaviour:
   - _type: 6
     _multipliersByLevel:
     - Key: 0
-      Value: 0.35
+      Value: 0.17
     - Key: 1
       Value: 0.65
     - Key: 2
